@@ -7,13 +7,13 @@
           <nav class="admin-menu">
             <ul>
               <li>
-                <a href="#">Home</a>
+                <a {{ $module == 'Home' ? 'class=active' : '' }} href="{{ url('home') }}">Home</a>
               </li>
               <li>
-                <a href="#">Konten</a>
+                <a {{ $module == 'Berita' ? 'class=active' : '' }} href="{{ url('/berita') }}">Berita</a>
               </li>
               <li>
-                <a href="#">Kategori</a>
+                <a {{ $module == 'Kategori' ? 'class=active' : '' }} href="{{ url('/kategori') }}">Kategori</a>
               </li>
               <li>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-9 no-padding">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">{{ $module }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -31,8 +31,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    @yield('content_dashboard')
                 </div>
             </div>
         </div>
